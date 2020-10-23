@@ -38,6 +38,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
+# Add Node and npm
+RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+RUN apt-get install -y nodejs
+
 # Copy existing application directory contents
 COPY . /var/www
 
