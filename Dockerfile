@@ -33,10 +33,6 @@ RUN docker-php-ext-install gd
 
 # Install composer and add dependences 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer install
-RUN composer require laravel/jetstream
-
-RUN php artisan jetstream:install livewire --teams
 
 # Add user for laravel application
 RUN groupadd -g 1000 www
@@ -45,7 +41,6 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 # Add Node and npm
 RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
 RUN apt-get install -y nodejs
-RUN npm install && npm run dev
 
 # Copy existing application directory contents
 COPY . /var/www
